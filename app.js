@@ -1,19 +1,22 @@
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 dotenv.config();
-const express = require ("express")
+const path = require("path");
+const fs = require("fs");
+const express = require("express");
 const app = express();
-const port = Number(process.env.PORT)
+const port = Number(process.env.PORT);
 
 // const categoryRouter = require("./routes/categoriesRoutes")
-const usersRouter = require("./routes/userRoutes")
+const usersRouter = require("./routes/userRoutes");
 
-
-app.use(express.urlencoded({extended:false}));
+// const publicFolder = path.resolve(__dirname, process.env.PUBLIC_FOLDER);
+// app.use(express.static(publicFolder));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // app.use(`${process.env.API_V1}/catogries`,categoryRouter)
-app.use(`${process.env.API_V1}/users`,usersRouter);
+app.use(`${process.env.API_V1}/users`, usersRouter);
 
-app.listen(port , ()=>{
-    console.log(`server is listening to ${port}`)
-})
+app.listen(port, () => {
+  console.log(`server is listening to ${port}`);
+});

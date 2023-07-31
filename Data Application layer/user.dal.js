@@ -3,21 +3,21 @@ const { User } = require("../model/user.model");
 
 class UsersDAL {
   constructor() {
-    this._dbClient = new MongoClient(process.env.DB_CON_STR, {
-      useNewUrlparser: true,
-    });
+    this._dbClient = new MongoClient(process.env.DB_CON_STR);
     this._database = this._dbClient.db(process.env.DB_NAME);
   }
 
   async Add(user) {
     try {
-      const collection = this._database.collection("users");
+      await this._dbClient.connect();
+      const collection = this._database.collection("reg_user");
       const result = await collection.insertOne(user);
       return result;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      return null;
     } finally {
-      this._database.close();
+      this._dbClient.close();
     }
   }
 

@@ -10,7 +10,7 @@ class UsersDAL {
   async Add(user) {
     try {
       await this._dbClient.connect();
-      const collection = this._database.collection("reg_user");
+      const collection = this._database.collection("users");
       const result = await collection.insertOne(user);
       return result;
     } catch (error) {

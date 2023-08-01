@@ -3,10 +3,9 @@ class User {
     if (_id) {
       this._id = _id;
     }
-    this.FullName = fullName;
+    this.fullName = fullName;
     this.Email = email;
     this.Password = password;
   }
 }
-
 module.exports = { User };
